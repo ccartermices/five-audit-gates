@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this protocol, cite the paper and this repository."
+title: "Five audit gates for interpretability claims in pulse-wave models"
+authors:
+  - name: "TODO: author list"
+year: 2026
+url: "https://github.com/ccartermices/five-audit-gates"
+license: MIT
+type: software
