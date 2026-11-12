@@ -1,0 +1,13 @@
+setting,auc
+DEMO only,0.762
+MORPH only (无绝对压),0.582
+ABS only (压力本身),0.619
+MORPH+DEMO,0.758
+ALL,0.758
+null_mean,0.495
+null_p95,0.52
+p_value_morph,0.0
+delta_morph_over_demo,-0.0041
+n,2052.0
+PR,3.47
+PC90,5.0

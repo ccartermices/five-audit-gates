@@ -1,0 +1,154 @@
+{
+  "version": "v2.3",
+  "hash": "f557d04dc5e431a9",
+  "table": {
+    "stiffness": {
+      "feats": [
+        "t_90",
+        "t_50up",
+        "h3_r",
+        "h4_r"
+      ],
+      "family": "mechanism",
+      "concept": "弦",
+      "gloss": "上升支陡度与高阶谐波比 = 血管张力/硬度"
+    },
+    "reflection": {
+      "feats": [
+        "p2_rel",
+        "t_notch",
+        "notch_depth",
+        "sdptg_b"
+      ],
+      "family": "mechanism",
+      "concept": "弦",
+      "gloss": "收缩后反射波/肩部强度与时相 = 早期波反射；v2.3 加 sdptg_b（二阶导 b/a），MIMIC 上与全部形态量秩相关 ≤0.25，是独立测量"
+    },
+    "dicrotic": {
+      "feats": [
+        "t_dicrotic",
+        "sdptg_d"
+      ],
+      "family": "mechanism",
+      "concept": "滑",
+      "gloss": "重搏波时相与二阶导 d/a = 晚期(舒张)波；v2.3 从 reflection 拆出。分半信度仅 MIMIC 成立（b 0.68 / d 0.54），VDB/PWDB 一人一段不可测，CM 0.22/0.09 = 噪声（19 号 §6）"
+    },
+    "duration": {
+      "feats": [
+        "t1",
+        "t_50down",
+        "width50"
+      ],
+      "family": "mechanism",
+      "concept": "滑",
+      "gloss": "收缩峰时相与半高宽 = 波形圆滑/陡峭"
+    },
+    "shape": {
+      "feats": [
+        "skew",
+        "kurt",
+        "mbp_mmHg"
+      ],
+      "family": "descriptor",
+      "concept": "涩",
+      "gloss": "幅值分布形状 = 波形的统计重述，非独立机制"
+    },
+    "spectrum": {
+      "feats": [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h2_r"
+      ],
+      "family": "descriptor",
+      "concept": "通用",
+      "gloss": "基频与前四阶谐波 = 整体频谱包络，非独立机制"
+    },
+    "noise": {
+      "feats": [
+        "h5",
+        "h6",
+        "h7",
+        "h8",
+        "h5_r",
+        "h6_r",
+        "h7_r",
+        "h8_r",
+        "hf_energy"
+      ],
+      "family": "device",
+      "concept": "无",
+      "gloss": "5 阶以上高频能量 = 量化/噪声/采样率指纹，非生理"
+    }
+  },
+  "concept": {
+    "弦": {
+      "clusters": [
+        "stiffness",
+        "reflection"
+      ],
+      "classic": "端直以长，如按琴弦",
+      "ok": true,
+      "note": "张力高、反射早而强 —— L1 有直接对应量"
+    },
+    "滑": {
+      "clusters": [
+        "duration",
+        "dicrotic"
+      ],
+      "classic": "往来流利，如珠走盘",
+      "ok": true,
+      "note": "v2.3 起 dicrotic 独立成簇（t_dicrotic + sdptg_d），'滑'的重搏成分与'弦'的反射成分可分。但测量信度仅 MIMIC 成立（ICC_d 0.54）；VDB/PWDB 一人一段不可测，CM 0.09 = 噪声 —— 结论只能限定在这类源上"
+    },
+    "涩": {
+      "clusters": [
+        "shape"
+      ],
+      "classic": "往来艰涩，如轻刀刮竹",
+      "ok": true,
+      "note": "L1 只覆盖单周期内不规则；逐搏变异需 beat-level 数据，本层不覆盖"
+    },
+    "数/迟": {
+      "clusters": [],
+      "classic": "一息五至以上为数，三至以下为迟",
+      "ok": false,
+      "note": "需心率，时间轴归一化后被消掉 —— L1 缺口，须从 cycle_s 另补"
+    },
+    "洪/细": {
+      "clusters": [],
+      "classic": "来盛去衰为洪，细直而软为细",
+      "ok": false,
+      "note": "需绝对幅度，UNCAL 口径下不存在 —— L1 缺口，仅校准源可用"
+    },
+    "浮/沉": {
+      "clusters": [],
+      "classic": "举之有余按之不足为浮",
+      "ok": false,
+      "note": "需多通道压力梯度，仅 CM 有 25 通道 —— L1 缺口"
+    }
+  },
+  "gaps": [
+    "数/迟（心率被时间归一化消掉）",
+    "洪/细（绝对幅度被 min-max 消掉）",
+    "浮/沉（需多通道，L1 为单通道）",
+    "涩的逐搏变异（L1 为单周期）",
+    "重搏簇的跨源可比性（v2.3 用 SDPTG d/a 在特征定义层拆开了重搏/反射，但实测 PWDB 上 sdptg_b~p2_rel r=+0.80（合成单峰，b 波必然跟随主峰）、VDB/PWDB 一人一段无法测信度、CM 0.09=噪声 —— dicrotic 簇的可测域只有MIMIC 这类多搏真双峰源；CM 采集层不可分是硬件限制，见 19 号 §3）"
+  ],
+  "excluded": {
+    "q_entropy": "幅值分布熵=平滑度代理，|Δ|=0.667 随处理链漂移（15 号 §1）",
+    "upstroke_slope": "上升支斜率=平滑度代理，|Δ|=0.331 随处理链漂移（15 号 §1）",
+    "p2_found": "P2 检出的布尔标记，0/1 无生理量纲；用于下游过滤而非归因（16 号 §2）",
+    "aix_proxy": "≡ ap_rel，两者与 p2_rel 相差常数 q[P1]（四源 r=1.000000，17 号 §3）",
+    "ap_rel": "≡ aix_proxy，同上；p2_rel 已有同一信息",
+    "p_notch_rel": "≡ 1 − notch_depth（PWDB/CM 精确，VDB/MIMIC r=−0.995/−0.992）",
+    "t2": "≡ t_dicrotic（PWDB/CM 逐点相同；VDB/MIMIC r=0.9995/0.9975）—— P2 即重搏峰",
+    "p_dicrotic_rel": "≡ p2_rel（PWDB max|diff|=0；MIMIC/VDB mean|diff|=0.006/0.001，秩相关 +1.000）—— 检测器恒等式 i3≡i2 的产物，见 19 号 §7"
+  },
+  "superseded": {
+    "v1": "3ca1c0c430f42a14",
+    "v2_0": "2317524a2707afa7",
+    "v2_1": "b515f83ee3b20640"
+  },
+  "change_note": "v2.1->v2.2 删 4 个精确重复/镜像量（33->29）：aix_proxy、ap_rel、p_notch_rel、t2；reflection+notch+dicrotic 合并为 reflection（8->6 簇），因为三者 PC1 在数据上不可分（r=+1.00，参与率 1.62–3.32）。份额口径同时改为正交主成分靶子，v2.2 的份额与 v2.0/v2.1 是不同口径，不可直接相减。"
+}

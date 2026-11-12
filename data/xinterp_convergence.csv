@@ -1,0 +1,10 @@
+﻿pair,rho,top1_agree,arch
+SAE×干预,-0.14285714285714288,False,cnn
+SAE×代理,0.42857142857142866,True,cnn
+干预×代理,0.28571428571428575,False,cnn
+SAE×干预,-0.7142857142857144,False,mlp
+SAE×代理,0.3214285714285715,False,mlp
+干预×代理,0.3214285714285715,False,mlp
+SAE×干预,-0.3571428571428572,False,transformer
+SAE×代理,0.642857142857143,False,transformer
+干预×代理,0.3214285714285715,False,transformer

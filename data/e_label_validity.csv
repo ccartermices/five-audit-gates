@@ -1,0 +1,7 @@
+setting,auc
+age_only,0.317
+sbp_only,0.986
+morphology_all,0.532
+null_mean,0.486
+null_p95,0.657
+p_value,0.355
