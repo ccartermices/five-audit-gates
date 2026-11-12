@@ -1,0 +1,6 @@
+gate,criterion,threshold,class,date_fixed,protocol_file
+G1,no load-bearing value is a literal,0 literals in 200 entries,P,2026-03-14,registry/build_checks.py
+G2,area under the curve above the permutation null,0.746 / 0.694,P,2026-04-02,protocol/gate2_threshold.yaml
+G3,intraclass correlation at the reported unit,0.80,P,2026-04-11,protocol/gate3_icc.yaml
+G4,detection threshold on the family z-score,2.6,H,2026-05-06,protocol/gate4_recalibrated.yaml
+G5,cross-run Jaccard at the reported unit,0.50,R,2026-05-20,protocol/gate5_stability.yaml

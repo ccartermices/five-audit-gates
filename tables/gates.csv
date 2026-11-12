@@ -1,0 +1,6 @@
+Gate,Question,Timing,Verdict,Claim removed
+G1,Can every value be recomputed from a hashed file?,P,PASS,—
+G2,Is the truth independent of the model that produced the features?,P,FAIL,independent validation
+G3,Is the quantity reliable at the unit at which it is reported?,P,PARTIAL,single-beat usability
+G4,Does the test reject at its nominal rate under the null?,H,FAIL,the family-ordering claim
+G5,Does the reported unit survive reseeding of the model?,R,SPLIT,feature-level attribution
